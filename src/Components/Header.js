@@ -26,8 +26,8 @@ const Header = () => {
         main: "#fff",
       },
       type: "dark",
-    },
-  })
+    }
+  });
 
   return (
     <ThemeProvider theme={darkTheme}>
@@ -37,8 +37,7 @@ const Header = () => {
           <Typography 
           onClick = {() => navigate("/crypto-tracker/")}
           className={classes.title}
-          variant = 'h6'
-          >
+          variant = 'h5'>
             Crypto Tracker
           </Typography>
 

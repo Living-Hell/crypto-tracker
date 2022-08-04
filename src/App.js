@@ -5,23 +5,23 @@ import Header from './Components/Header';
 import CoinPage from './Pages/CoinPage';
 import Homepage from './Pages/Homepage';
 
+const useStyles = makeStyles(() =>({
+
+  App: {
+    backgroundColor: "#05445e",
+    color: "white",
+    minHeight: "100vh"
+  }
+
+}));
+
 function App() {
-
-  const useStyles = makeStyles(() =>({
-
-    App: {
-      backgroundColor: "#0c2d48",
-      color: "white",
-      minHeight: "100vh",
-    },
-
-  }));
 
   const classes = useStyles();
 
   return (
     <BrowserRouter>
-      <div className = {classes.App} >
+      <div className = {classes.App}>
         <Header />
         <Routes>
           <Route path='/crypto-tracker' element={<Homepage/>} exact/>
