@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react'
 
 const Crypto = createContext();
 
-const CryptoContext = ({ Children }) => {
+const CryptoContext = ({ children }) => {
 
     const [currency, setCurrency] = useState("INR");
     const [symbol, setSymbol] = useState("₹");
@@ -17,7 +17,7 @@ const CryptoContext = ({ Children }) => {
 
   return (
     <Crypto.Provider value={ {currency, symbol, setCurrency} }>
-        {Children}
+        {children}
     </Crypto.Provider>
   )
 }

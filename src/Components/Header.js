@@ -8,10 +8,10 @@ import { CryptoState } from '../CryptoContext';
 const useStyles = makeStyles(() =>({
   title:{
     flex: 1,
-    colod: "gold",
-    fontFamily: "Monsterrat",
+    color: "#ffd801",
+    fontFamily: "Roboto",
     fontWeight: "bold",
-    cursor: "pointer"
+    cursor: "pointer",
   }
 }))
 
@@ -22,8 +22,6 @@ const Header = () => {
   const navigate = useNavigate();
 
   const { currency, setCurrency } = CryptoState();
-
-  console.log(currency);
 
   const darkTheme = createTheme({
     palette: {
@@ -53,8 +51,8 @@ const Header = () => {
               height: 40,
               marginRight: 15,
             }}
-            value = {currency}
-            onChange = {(e) => setCurrency(e.target.value)}
+            value = {{currency}}
+          onChange = {(e) => setCurrency(e.target.value)}
           >
             <MenuItem value = "USD">USD</MenuItem>
             <MenuItem value = "INR">INR</MenuItem>
