@@ -79,13 +79,13 @@ const Carousel = () => {
 
       });
 
-      const responsive = {
+      const responsive =     {
         0: {
-            item: 2,
+            items: 2,
         },
-        512: {
-            item: 4,
-        },
+        1024: {
+            items: 3
+        }
       };
 
   return (
