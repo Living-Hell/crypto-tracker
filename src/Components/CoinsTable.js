@@ -4,17 +4,33 @@ import { CoinList } from "../config/api";
 import { CryptoState } from '../CryptoContext';
 import { Container, createTheme, LinearProgress, makeStyles, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, ThemeProvider, Typography } from '@material-ui/core';
 import { useNavigate } from 'react-router-dom';
+import { Pagination } from '@material-ui/lab';
 
-const useStyles = makeStyles(() => ({}));
+const useStyles = makeStyles(() => ({
+    row: {
+        backgroundColor: "#101a27",
+        cursor: "pointer",
+        "&:hover": {
+            backgroundColor: "#091217",
+        },
+        fontFamily: "Roboto",
+    },
+    pagination: {
+        "& .MuiPaginationItem-root": {
+            color: "#87cefb",
+        },
+    },
+}));
 
 const CoinsTable = () => {
 
     const [coins, setCoins] = useState([]);
     const [loading, setLoading] = useState(false);
     const [search, setSearch] = useState();
+    const [page, setPage] = useState(1);
     const navigate = useNavigate();
     
-    const {currency} = CryptoState();
+    const {currency, symbol} = CryptoState();
 
     const fetchCoins = async () => {
         setLoading(true);
@@ -69,7 +85,7 @@ const CoinsTable = () => {
                         <LinearProgress style={{ backgroundColor: "#40E0D0"}} />
                     ) : (
                         <Table>
-                            <TableHead style = {{backgroundColor: "#ADD8E6"}}>
+                            <TableHead style = {{backgroundColor: "#91bad6"}}>
                                 <TableRow>
                                     {["Coin", "Price", "24h Change", "Market Cap"].map((head) => (
                                         <TableCell
@@ -88,7 +104,9 @@ const CoinsTable = () => {
                             </TableHead>
 
                             <TableBody>
-                                {handleSearch().map((row) => {
+                                {handleSearch()
+                                .slice( (page-1) * 10, page * 10)
+                                .map((row) => {
                                     const profit = row.price_change_percentage_24h > 0;
 
                                     return (
@@ -111,6 +129,41 @@ const CoinsTable = () => {
                                             height="50"
                                             style = {{ marginBottom: 10 }}
                                             ></img>
+
+                                            <div
+                                            style = {{ display: "flex", flexDirection: "column" }}
+                                            >
+                                                <span
+                                                style = {{ textTransform: "uppercase", fontSize: 22 }}
+                                                >
+                                                    { row.symbol}
+                                                </span>
+                                                <span
+                                                style = {{ color: "darkgrey" }}
+                                                >
+                                                    {row.name}
+                                                </span>
+                                            </div>
+                                            </TableCell>
+
+                                            <TableCell align = "right">
+                                                {symbol}{" "}
+                                                {row.current_price.toLocaleString(undefined, {maximumFractionDigits:2})}
+                                            </TableCell>
+
+                                            <TableCell
+                                            align= "right"
+                                            style = {{ color: profit>0 ? "rgb(14, 203, 129)" : "red",
+                                                        fontWeight: 500,
+                                                    }}
+                                            >
+                                                {profit && "+"}
+                                                {row.price_change_percentage_24h.toFixed(2)}%
+                                            </TableCell>
+
+                                            <TableCell align = "right">
+                                                {symbol}{" "}
+                                                {row.market_cap.toLocaleString(undefined, {maximumFractionDigits:2}).slice(0,-8)} M
                                             </TableCell>
                                         </TableRow>
                                     )
@@ -120,6 +173,22 @@ const CoinsTable = () => {
                     )
                 }
             </TableContainer>
+
+                <Pagination
+                style = {{ 
+                    padding: 20,
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                 }}
+                 classes = {{ul: classes.pagination}}
+                 count = {(handleSearch()?.length / 10).toFixed(0)}
+                 onChange={(_, value) => {
+                    setPage(value);
+                    window.scroll(0,450);
+                 }}
+                >
+                </Pagination>
 
         </Container>
     </ThemeProvider>
