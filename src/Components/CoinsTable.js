@@ -108,10 +108,9 @@ const CoinsTable = () => {
                                 .slice( (page-1) * 10, page * 10)
                                 .map((row) => {
                                     const profit = row.price_change_percentage_24h > 0;
-
                                     return (
                                         <TableRow
-                                        onClick={()=> navigate('/coins/${row.id')}
+                                        onClick={()=> navigate(`/coins/${row.id}`)}
                                         className = {classes.row}
                                         key = {row.name}
                                         >
@@ -182,7 +181,7 @@ const CoinsTable = () => {
                     justifyContent: "center",
                  }}
                  classes = {{ul: classes.pagination}}
-                 count = {(handleSearch()?.length / 10).toFixed(0)}
+                 count = {(handleSearch()?.length / 10).toFixed()}
                  onChange={(_, value) => {
                     setPage(value);
                     window.scroll(0,450);
