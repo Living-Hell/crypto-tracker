@@ -5,6 +5,8 @@ import { HistoricalChart } from '../config/api';
 import { createTheme } from '@material-ui/core/styles';
 import { CircularProgress, makeStyles, ThemeProvider } from '@material-ui/core';
 import { Line } from 'react-chartjs-2';
+import { Chart, registerables } from 'chart.js';
+Chart.register(...registerables);
 
 const useStyles = makeStyles((theme) => ({
   container:{
@@ -67,15 +69,17 @@ const CoinInfo = ({ coin }) => {
           <>
             <Line
               data={{
-                labels: historicalData.map(coin => {
+                labels: historicalData && historicalData.map((coin) => {
                   let date = new Date(coin[0]);
                   let time = 
                           date.getHours() > 12
                             ? `${date.getHours() - 12}:${date.getMinutes()} PM`
                             : `${date.getHours()}:${date.getMinutes()} AM`;
                   return days===1?time: date.toLocaleDateString();
-                })
+                }),
+                datasets: [{ data: historicalData.map((coin) => coin[1]), }],
               }}
+              
             />
           </>
         )}
