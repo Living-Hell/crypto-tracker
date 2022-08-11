@@ -5,7 +5,9 @@ import { HistoricalChart } from '../config/api';
 import { createTheme } from '@material-ui/core/styles';
 import { CircularProgress, makeStyles, ThemeProvider } from '@material-ui/core';
 import { Line } from 'react-chartjs-2';
+import { chartDays } from '../config/data';
 import { Chart, registerables } from 'chart.js';
+import SelectButton from './SelectButton';
 Chart.register(...registerables);
 
 const useStyles = makeStyles((theme) => ({
@@ -91,9 +93,26 @@ const CoinInfo = ({ coin }) => {
             }
           }}
             />
+            <div
+              style = {{
+                display:"flex",
+                marginTop: 20,
+                justifyContent: "space-around",
+                width: "100%",
+              }}
+            >
+              {chartDays.map((day) => (
+                <SelectButton
+                  key={day.value}
+                  onClick={() => setDays(day.value)}
+                  selected={day.value === days}
+                >
+                  {day.label}
+                </SelectButton>
+              ))}
+            </div>
           </>
         )}
-        {/*Push in the github with commit msg 'added the chart'*/}
       </div>
     </ThemeProvider>
   )
