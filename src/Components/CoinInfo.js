@@ -77,13 +77,23 @@ const CoinInfo = ({ coin }) => {
                             : `${date.getHours()}:${date.getMinutes()} AM`;
                   return days===1?time: date.toLocaleDateString();
                 }),
-                datasets: [{ data: historicalData.map((coin) => coin[1]), }],
-              }}
-              
+                datasets: [{ data: historicalData.map((coin) => coin[1]),
+                label: `Price ( Past ${days} Days ) in ${currency}`,
+                borderColor: "#75E6DA",
+              },
+            ],
+          }}
+          options={{
+            elements:{
+              point:{
+                radius: 1,
+              }
+            }
+          }}
             />
           </>
         )}
-
+        {/*Push in the github with commit msg 'added the chart'*/}
       </div>
     </ThemeProvider>
   )
