@@ -16,7 +16,7 @@ const useStyles = makeStyles(({
             color: "black",
         },
         width: "22%",
-        //margin: 5,
+        margin: 5,
     }
 }));
 
