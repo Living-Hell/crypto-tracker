@@ -1,6 +1,5 @@
 import { makeStyles } from '@material-ui/core';
 import React from 'react';
-import {day,  days} from './CoinInfo'
 
 const useStyles = makeStyles(({
     selectbutton:{
