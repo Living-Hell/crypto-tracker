@@ -24,4 +24,4 @@ You can also edit channels by ediitng the name of the channel or adding some new
 
 # Check out the MediChat!
 
-https://medichat.netlify.app/
+https://living-hell.github.io/crypto-tracker/
