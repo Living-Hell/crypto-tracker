@@ -8,7 +8,7 @@
 
 # Introduction
 
-Crypto Tracker is a web application which displays the various information related to a cryptocurrency,updated in real-time.
+Crypto Tracker is a fully responsive web application which displays the various information related to a cryptocurrency, updated in real-time.
 
 Users can get information related to a coin such as Price, 24h Change, Market Cap, etc. in both INR nd USD. 
 
@@ -22,7 +22,7 @@ Single Coin page also has a Historical Chart which displays the previous prices 
 
 It is created using React JS, Material UI and Chart JS and has fully responsive functionality.
 
-To manage the state of this app, Context API is used and for the backend, Coin Gecko API is used.
+To manage the state of this app, Context API was used and for the backend, Coin Gecko API was used.
 
 
 # Check out the CryptoTracker!
